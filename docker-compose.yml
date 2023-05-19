@@ -1,4 +1,10 @@
 version: "3.9"
+
+volumes:
+  db-store:
+  # 追記
+  pma-session-store:
+
 services:
   app:
     build: ./infra/php
@@ -21,6 +27,17 @@ services:
     volumes:
       - db-store:/var/lib/mysql
 
-volumes:
-  db-store:
+    # 追記
+  pma:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      - PMA_HOST=db
+      - PMA_USER=phper
+      - PMA_PASSWORD=secret
+    ports:
+      - 5678:80
+    volumes:
+      - pma-session-store:/sessions
+
+
   
