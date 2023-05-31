@@ -37,7 +37,4 @@ services:
     ports:
       - 5678:80
     volumes:
-      - pma-session-store:/sessions
-
-
-  
+      - pma-session-store:/sessions  
